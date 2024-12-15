@@ -24,8 +24,8 @@ fun TopAppBar(
     Box(
         modifier = modifier
             .fillMaxWidth()
-            .padding(16.dp),
-        contentAlignment = Alignment.Center // Pastikan konten di tengah
+            .padding(3.dp),
+        contentAlignment = Alignment.Center
     ) {
         if (showBackButton) {
             Row(
@@ -42,7 +42,6 @@ fun TopAppBar(
             }
         }
 
-        // Teks judul
         Text(
             text = judul,
             fontSize = 25.sp,

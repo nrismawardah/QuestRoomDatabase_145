@@ -116,7 +116,6 @@ fun BodyHomeMhsView (
         }
 
         homeUiState.listMhs.isEmpty() -> {
-            // Menampilkan pesan jika data kosong
             Box(
                 modifier = modifier.fillMaxSize(),
                 contentAlignment = Alignment.Center
@@ -131,7 +130,6 @@ fun BodyHomeMhsView (
         }
 
         else -> {
-            // Menampilkan daftar mahasiswa
             ListMahasiswa(
                 listMhs = homeUiState.listMhs,
                 onClick = {

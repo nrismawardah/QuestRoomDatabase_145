@@ -19,7 +19,7 @@ class MahasiswaViewModel(private val repositoryMhs: RepositoryMhs) : ViewModel()
         )
     }
 
-    private fun validateFields():Boolean {
+    fun validateFields():Boolean {
         val event = uiState.mahasiswaEvent
         val errorState = FormErrorState(
             nim = if (event.nim.isNotEmpty()) null else "NIM tidak boleh kosong",

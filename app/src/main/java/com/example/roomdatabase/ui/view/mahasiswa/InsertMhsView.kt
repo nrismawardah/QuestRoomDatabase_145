@@ -36,7 +36,10 @@ import com.example.roomdatabase.ui.viewmodel.MahasiswaEvent
 import com.example.roomdatabase.ui.viewmodel.MahasiswaViewModel
 import com.example.roomdatabase.ui.viewmodel.MhsUiState
 import com.example.roomdatabase.ui.viewmodel.PenyediaViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 object DestinasiInsert : AlamatNavigasi {
     override val route: String = "insert_mhs"
@@ -64,7 +67,7 @@ fun InsertMhsView(
 
     Scaffold (
         modifier = modifier,
-        snackbarHost = { SnackbarHost(hostState = snackbarHostState) }
+        snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
     ){ padding ->
         Column (
             modifier = Modifier
@@ -75,7 +78,8 @@ fun InsertMhsView(
             TopAppBar(
                 onBack = onBack,
                 showBackButton = true,
-                judul = "Tambah Mahasiswa"
+                judul = "Tambah Mahasiswa",
+                modifier = Modifier
             )
             InsertBodyMhs(
                 uiState = uiState,
@@ -136,7 +140,7 @@ fun FormMahasiswa(
             .fillMaxWidth()
     ){
         OutlinedTextField(
-            modifier = modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth(),
             value = mahasiswaEvent.nama,
             onValueChange = {
                 onValueChange(mahasiswaEvent.copy(nama = it))
@@ -165,7 +169,7 @@ fun FormMahasiswa(
             color = Color.Red
         )
         Spacer(
-            modifier = Modifier.height(16.dp)
+            modifier = Modifier.height(5.dp)
         )
         Text(
             text = "Jenis Kelamin"
@@ -190,10 +194,6 @@ fun FormMahasiswa(
                 }
             }
         }
-        Text(
-            text = errorState.jenisKelamin ?: "",
-            color = Color.Red
-        )
         OutlinedTextField(
             modifier = modifier.fillMaxWidth(),
             value = mahasiswaEvent.alamat,
@@ -209,7 +209,7 @@ fun FormMahasiswa(
             color = Color.Red
         )
         Spacer(
-            modifier = Modifier.height(16.dp)
+            modifier = Modifier.height(5.dp)
         )
         Text(
             text = "Kelas"
@@ -234,10 +234,6 @@ fun FormMahasiswa(
                 }
             }
         }
-        Text(
-            text = errorState.kelas ?: "",
-            color = Color.Red
-        )
         OutlinedTextField(
             modifier = modifier.fillMaxWidth(),
             value = mahasiswaEvent.angkatan,
